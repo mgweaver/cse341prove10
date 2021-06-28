@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json())
 app.use('/', router);
 
-app.use(express.static('./public'));
+app.use(express.static('./script'));
 
 app.get('/pr10', (req, res, next) => {
     res.render('/pr10', {
