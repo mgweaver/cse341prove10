@@ -20,4 +20,15 @@ app.get('/pr10', (req, res, next) => {
       })
 });
 
-app.listen(PORT);
+const server = app.listen(PORT)
+
+const io = require('socket.io')(server)
+
+io.on('connection', socket => {
+    console.log('Client connected')
+
+    socket.on('new-name', () => {
+        // Someone added a name! Tell everyone else to update the list.
+        socket.broadcast.emit('update-list')
+    })
+})
